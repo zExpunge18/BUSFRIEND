@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#203F7D</color>
+    <color name="colorAccent">#345088</color>
+    <color name="colorPrimary">#203F7D</color>
+    <color name="colorBorder">#292929</color>
+
+
+    <color name="colorTextNoOpacity">#EF9540</color>
+    <color name="colorMain">#345088</color>
+    <color name="colorNav">#203F7D</color>
+    <color name="colorIcText">#fbfdfb</color>
+    <color name="colorTxtBlack">#292929</color>
+
+    <!--Opacity Background-->
+    <color name="colorBody">#CCEF9540</color>
+    <color name="colorBodyBlack">#BF292929</color>
+</resources>
