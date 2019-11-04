@@ -14,5 +14,7 @@
 
     <!--Opacity Background-->
     <color name="colorBody">#CCEF9540</color>
+    <color name="colorBodyNoOpac">#EF9540</color>
+    <color name="colorWhite">#fbfdfb</color>
     <color name="colorBodyBlack">#BF292929</color>
 </resources>
