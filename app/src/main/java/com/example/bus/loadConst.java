@@ -2,8 +2,9 @@ package com.example.bus;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,8 +31,9 @@ public class loadConst extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button btnLogin;
     TextView btnRegister;
-    String Email, Password;
     ProgressDialog progressDialog;
+    String Email, Password, fullname, mobile, email;
+    int ewallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,12 @@ public class loadConst extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         progressDialog = new ProgressDialog(this);
 
-     /*   btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginUser();
             }
-        });*/
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +61,9 @@ public class loadConst extends AppCompatActivity {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),index.class));
-                finish();
-            }
-        });
     }
 
-   /* private void LoginUser() {
+    private void LoginUser() {
         Email = etEmail.getText().toString();
         Password = etPassword.getText().toString();
 
@@ -97,6 +93,7 @@ public class loadConst extends AppCompatActivity {
 
                                 if(!error){
                                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                                    getJSONObject(jsonObject.getJSONArray("user"));
                                     startActivity(new Intent(getApplicationContext(),index.class));
                                     finish();
                                 }else {
@@ -130,5 +127,26 @@ public class loadConst extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(stringRequest);
         }
-        }*/
+    }
+
+    private void getJSONObject(JSONArray user) throws JSONException {
+        for (int i = 0; i < user.length(); i++) {
+            JSONObject obj = user.getJSONObject(i);
+
+            fullname = obj.getString("fullname");
+            email = obj.getString("email");
+            mobile = obj.getString("contact_no");
+            ewallet = obj.getInt("ewallet");
+
+            SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("logStatus",1);
+            editor.putString("fullname",fullname);
+            editor.putString("email",email);
+            editor.putString("mobile",mobile);
+            editor.putInt("ewallet",ewallet);
+            editor.commit();
+
+        }
+    }
 }
