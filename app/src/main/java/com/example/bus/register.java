@@ -2,9 +2,8 @@ package com.example.bus;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +29,6 @@ public class register extends AppCompatActivity {
     ImageView btnBack;
     Button btnRegister;
     EditText etName, etMobile, etEmail, etPassword, etCpasswod;
-    private static final int CODE_POST_REQUEST = 1025;
     ProgressDialog progressDialog;
 
     String fullname, mobile, email, password, cpassword;
@@ -56,23 +54,16 @@ public class register extends AppCompatActivity {
                 startActivity(intent_loadCon2);
             }
         });
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_loadCon2 = new Intent(register.this, index.class);
-                startActivity(intent_loadCon2);
-            }
-        });
 
-        /*btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RegisterUser();
             }
-        });*/
+        });
     }
 
-    /*private void RegisterUser() {
+    private void RegisterUser() {
 
         fullname = etName.getText().toString();
         mobile = etMobile.getText().toString();
@@ -166,5 +157,5 @@ public class register extends AppCompatActivity {
             requestQueue.add(stringRequest);
         }
 
-    }*/
+    }
 }

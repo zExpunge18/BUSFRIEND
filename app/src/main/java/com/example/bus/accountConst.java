@@ -1,16 +1,22 @@
 package com.example.bus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class accountConst extends AppCompatActivity {
 
     private TextView mTextMessage;
+    EditText etName, etMobile, etEmail;
+    String fullname, mobile, email;
+    int ewallet;
 
 
 
@@ -46,8 +52,25 @@ public class accountConst extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_const);
+
+        SharedPreferences sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        if(sp.contains("logStatus")) {
+            fullname = sp.getString("fullname",null);
+            mobile = sp.getString("mobile",null);
+            email = sp.getString("email",null);
+            ewallet = sp.getInt("ewallet",0);
+        }
+
+        etName = findViewById(R.id.etFullname);
+        etEmail = findViewById(R.id.etEmail);
+        etMobile = findViewById(R.id.etContact);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        etName.setText(fullname);
+        etMobile.setText(mobile);
+        etEmail.setText(email);
     }
+
 }
