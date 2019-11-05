@@ -33,12 +33,26 @@ public class loadConst extends AppCompatActivity {
     TextView btnRegister;
     ProgressDialog progressDialog;
     String Email, Password, fullname, mobile, email;
-    int ewallet;
+    int ewallet, logStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_conts);
+
+        SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+        if(sp.contains("logStatus")) {
+            logStatus = sp.getInt("logStatus", 0);
+        }
+
+        if(logStatus == 1){
+            SharedPreferences.Editor editor = sp.edit();
+            editor.clear();
+            editor.putInt("logStatus",0);
+            editor.commit();
+            startActivity(new Intent(getApplicationContext(), index.class));
+            finish();
+        }
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);

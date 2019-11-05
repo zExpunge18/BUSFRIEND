@@ -40,6 +40,11 @@ public class accountConst extends AppCompatActivity {
                     startActivity(account);
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(accountConst.this, loadConst.class);
                     startActivity(logout);
                     break;
