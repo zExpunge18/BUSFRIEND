@@ -83,22 +83,18 @@ public class transportList extends AppCompatActivity {
         if(sp.contains("Destination_from")) {
             Destination_from = sp.getString("Destination_from", null);
             Destination_to = sp.getString("Destination_to",null);
-        }else{
-
         }
-        LoadBusList();
+
         progressDialog = new ProgressDialog(this);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         scheduleList = new ArrayList<>();
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        LoadBusList();
 
 //        busLists = new ArrayList<>();
 //
-//        busLists.add(new busList(R.drawable.busfriend, "AC", "FLorida", "Taguig", "16", "300", "430"));
-//
-//
-//
+//        busLists.add(new busList(R.drawable.busfriend, "AC", "FLorida", "Taguig", "16", "300", "430"))
 //        busCustomListAdapter adapter2 = new busCustomListAdapter(this, R.layout.bus_layout_listview, busLists);
 //        listView.setAdapter(adapter2);
 
@@ -148,7 +144,7 @@ public class transportList extends AppCompatActivity {
                             String message = jsonObject.getString("message");
 
                             if(!error){
-                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                                 getJSONObject(jsonObject.getJSONArray("schedule"));
 
                             }else {
@@ -204,20 +200,19 @@ public class transportList extends AppCompatActivity {
             TextView busPriceTxt = busListView.findViewById(R.id.busPriceTxt);
             TextView busTimeTxt = busListView.findViewById(R.id.busTimeTxt);
 
-
-
             final busList bus = scheduleList.get(position);
 
             busTypeTxt.setText(bus.getBusType());
             busNameTxt.setText(bus.getBusName());
             busLocationTxt.setText(bus.getDestination_from());
-            busSeatTxt.setText(bus.getBusSeat());
-            busPriceTxt.setText(bus.getBusPrice());
+            busSeatTxt.setText(String.valueOf(bus.getBusSeat()));
+            busPriceTxt.setText(String.valueOf(bus.getBusPrice()));
             busTimeTxt.setText(bus.getBusTime());
 
             return busListView;
         }
     }
+
     private void getJSONObject(JSONArray schedule) throws JSONException {
         //clearing previous heroes
         scheduleList.clear();
@@ -229,7 +224,7 @@ public class transportList extends AppCompatActivity {
             scheduleList.add(new busList(
                     obj.getInt("id"),
                     obj.getInt("busSeat"),
-                    obj.getInt("busPrice"),
+                    obj.getInt("price"),
                     obj.getString("bus_type"),
                     obj.getString("bus_name"),
                     obj.getString("destination_from"),
