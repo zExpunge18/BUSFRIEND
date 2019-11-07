@@ -30,18 +30,22 @@ public class index extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent index = new Intent(index.this, index.class);
                     startActivity(index);
+                    finish();
                     break;
                 case R.id.navigation_dashboard:
                     Intent schedule = new Intent(index.this, userSchedule.class);
                     startActivity(schedule);
+                    finish();
                     break;
                 case R.id.navigation_account:
                     Intent account = new Intent(index.this, accountConst.class);
                     startActivity(account);
+                    finish();
                     break;
                 case R.id.navigation_logout:
                     Intent logout = new Intent(index.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;

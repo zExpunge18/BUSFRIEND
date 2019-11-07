@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -92,15 +93,32 @@ public class transportList extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         LoadBusList();
 
-//        busLists = new ArrayList<>();
-//
-//        busLists.add(new busList(R.drawable.busfriend, "AC", "FLorida", "Taguig", "16", "300", "430"))
-//        busCustomListAdapter adapter2 = new busCustomListAdapter(this, R.layout.bus_layout_listview, busLists);
-//        listView.setAdapter(adapter2);
-
         listView = findViewById(R.id.busListView);
         busPriceTxt = findViewById(R.id.busPriceTxt);
         btnReturn1 = findViewById(R.id.btnReturn1);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final busList bus = scheduleList.get(position);
+                SharedPreferences sp = getApplication().getSharedPreferences("trip_details", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.clear();
+                editor.putString("driver_responsible", bus.getDriver_responsible());
+                editor.putInt("price", bus.getBusPrice());
+                editor.putString("time", bus.getBusTime());
+                editor.putString("date", bus.getDate());
+                editor.putString("plate_no",bus.getPlate_no());
+                editor.putString("busType",bus.getBusType());
+                editor.putString("operator",bus.getDriver_responsible());
+                editor.putString("bus_name",bus.getBusName());
+                editor.putString("destination_To",bus.getDestination_to());
+                editor.commit();
+                startActivity(new Intent(getApplicationContext(),transportListDetails.class));
+                finish();
+
+            }
+        });
 
 
         String[] bustype = {"AC", "Ordinary"};
@@ -230,7 +248,10 @@ public class transportList extends AppCompatActivity {
                     obj.getString("destination_from"),
                     obj.getString("destination_to"),
                     obj.getString("time"),
-                    obj.getString("driver_responsible")
+                    obj.getString("driver_responsible"),
+                    obj.getString("plate_no"),
+                    obj.getString("operator"),
+                    obj.getString("date")
             ));
         }
 

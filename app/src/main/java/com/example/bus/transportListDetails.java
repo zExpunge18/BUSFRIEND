@@ -1,10 +1,11 @@
 package com.example.bus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 public class transportListDetails extends AppCompatActivity {
 
     private Button btnCancelBtn;
-    private TextView mTextMessage;
+    private TextView mTextMessage, txtBusname, txtOperator, txtPlateNo, txtBusType, txtDestination, txtDate, txtTime, txtPrice;
     private Button btnPayment;
+    int busPrice;
+    String name, operator, plateNo, busType, destination, date, driver_responsible, time, price;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,9 +51,29 @@ public class transportListDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_list_details);
 
+        SharedPreferences sp = getApplication().getSharedPreferences("trip_details", MODE_PRIVATE);
+            driver_responsible = sp.getString("driver_responsible", null);
+            name = sp.getString("bus_name", null);
+            operator = sp.getString("operator", null);
+            plateNo = sp.getString("plate_no", null);
+            busPrice = sp.getInt("price",0);
+            destination = sp.getString("destination_To",null);
+            date = sp.getString("date",null);
+            busType = sp.getString("busType",null);
+            time = sp.getString("time",null);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        txtBusname = findViewById(R.id.busNmDetailsTxt);
+        txtOperator = findViewById(R.id.busOperateTxt);
+        txtPlateNo = findViewById(R.id.busPlateTxt);
+        txtBusType = findViewById(R.id.busTypeDetTxt);
+        txtDestination = findViewById(R.id.busDestinationTxt);
+        txtDate = findViewById(R.id.busTransDateTxt);
+        txtTime = findViewById(R.id.busTransTimeTxt);
+        txtPrice = findViewById(R.id.txtPrice);
+
 
         btnCancelBtn = findViewById(R.id.busCancelBtn);
 
@@ -71,5 +94,18 @@ public class transportListDetails extends AppCompatActivity {
                 startActivity(intent_loadCon2);
             }
         });
+
+        txtBusname.setText(name);
+        txtOperator.setText(operator);
+        txtPlateNo.setText(plateNo);
+        txtDate.setText(date);
+        txtBusType.setText(busType);
+        txtDestination.setText(destination);
+        txtDate.setText(date);
+        txtTime.setText(time);
+        txtPrice.setText("PHP " + busPrice);
+
+
+
     }
 }
