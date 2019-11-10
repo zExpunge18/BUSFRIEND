@@ -104,6 +104,8 @@ public class transportList extends AppCompatActivity {
                 SharedPreferences sp = getApplication().getSharedPreferences("trip_details", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.clear();
+                editor.putInt("id",bus.getId());
+                editor.putInt("busSeat",bus.getBusSeat());
                 editor.putString("driver_responsible", bus.getDriver_responsible());
                 editor.putInt("price", bus.getBusPrice());
                 editor.putString("time", bus.getBusTime());
