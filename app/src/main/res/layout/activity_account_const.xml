@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/accountTxt"
+        android:id="@+id/etFullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -59,10 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/etFullname" />
 
     <EditText
-        android:id="@+id/etFullname"
+        android:id="@+id/etCash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -73,9 +73,9 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:textSize="18sp"
+        android:text="99999"
         android:textColor="@color/colorTxtBlack"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFullname" />
+        app:layout_constraintTop_toBottomOf="@+id/etCash" />
 
     <EditText
         android:id="@+id/etContact"

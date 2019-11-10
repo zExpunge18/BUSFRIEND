@@ -45,11 +45,11 @@ public class busCustomListAdapter extends ArrayAdapter<busList> {
 
         busTypeTxt.setText(busList.getBusType());
         busNameTxt.setText(busList.getBusName());
-        busLocationTxt.setText(busList.getBusLocation());
+        busLocationTxt.setText(busList.getDestination_from());
         busSeatTxt.setText(busList.getBusSeat());
         busPriceTxt.setText(busList.getBusPrice());
         busTimeTxt.setText(busList.getBusTime());
-        busImage.setImageDrawable(mCtx.getResources().getDrawable(busList.getBusImage()));
+//        busImage.setImageDrawable(mCtx.getResources().getDrawable(busList.getBusImage()));
 
 
         return view;
