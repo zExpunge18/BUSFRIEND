@@ -82,6 +82,7 @@ public class transportListDetails extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent_loadCon2 = new Intent(transportListDetails.this, transportList.class);
                 startActivity(intent_loadCon2);
+                finish();
             }
         });
 
@@ -90,8 +91,7 @@ public class transportListDetails extends AppCompatActivity {
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_loadCon2 = new Intent(transportListDetails.this, transportPayment.class);
-                startActivity(intent_loadCon2);
+                PayTicket();
             }
         });
 
@@ -105,7 +105,13 @@ public class transportListDetails extends AppCompatActivity {
         txtTime.setText(time);
         txtPrice.setText("PHP " + busPrice);
 
+    }
 
+    public void PayTicket(){
+
+        Intent intent_loadCon2 = new Intent(transportListDetails.this, transportPayment.class);
+        startActivity(intent_loadCon2);
+        finish();
 
     }
 }
