@@ -14,7 +14,8 @@ import android.widget.TextView;
 public class accountConst extends AppCompatActivity {
 
     private TextView mTextMessage;
-    EditText etName, etMobile, etEmail;
+    TextView etName;
+    EditText etCash, etMobile, etEmail;
     String fullname, mobile, email;
     int ewallet;
 
@@ -29,19 +30,27 @@ public class accountConst extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent index = new Intent(accountConst.this, index.class);
                     startActivity(index);
-                    
+                    finish();
                     break;
                 case R.id.navigation_dashboard:
                     Intent schedule = new Intent(accountConst.this, userSchedule.class);
                     startActivity(schedule);
+                    finish();
                     break;
                 case R.id.navigation_account:
                     Intent account = new Intent(accountConst.this, accountConst.class);
                     startActivity(account);
+                    finish();
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(accountConst.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;
@@ -62,6 +71,7 @@ public class accountConst extends AppCompatActivity {
         }
 
         etName = findViewById(R.id.etFullname);
+        etCash = findViewById(R.id.etCash);
         etEmail = findViewById(R.id.etEmail);
         etMobile = findViewById(R.id.etContact);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -71,6 +81,7 @@ public class accountConst extends AppCompatActivity {
         etName.setText(fullname);
         etMobile.setText(mobile);
         etEmail.setText(email);
+        etCash.setText(String.valueOf(ewallet));
     }
 
 }

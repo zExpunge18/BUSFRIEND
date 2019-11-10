@@ -38,7 +38,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etName = findViewById(R.id.etFullname);
+        etName = findViewById(R.id.etCash);
         etCpasswod = findViewById(R.id.etConfirmPassword);
         etMobile = findViewById(R.id.etMobile);
         etEmail = findViewById(R.id.etEmail);
