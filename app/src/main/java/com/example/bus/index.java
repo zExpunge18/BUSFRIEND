@@ -75,8 +75,8 @@ public class index extends AppCompatActivity {
 
         txtUsername.setText(fullname);
 
-        String[] spinFrom = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Pampanga"};
-        String[] spinTo = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Pampanga"};
+        String[] spinFrom = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Clark"};
+        String[] spinTo = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Clark"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinFrom);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinTo);

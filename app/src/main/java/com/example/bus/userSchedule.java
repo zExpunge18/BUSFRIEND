@@ -1,10 +1,10 @@
 package com.example.bus;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -22,18 +22,22 @@ public class userSchedule extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent index = new Intent(userSchedule.this, index.class);
                     startActivity(index);
+                    finish();
                     break;
                 case R.id.navigation_dashboard:
                     Intent schedule = new Intent(userSchedule.this, userSchedule.class);
                     startActivity(schedule);
+                    finish();
                     break;
                 case R.id.navigation_account:
                     Intent account = new Intent(userSchedule.this, accountConst.class);
                     startActivity(account);
+                    finish();
                     break;
                 case R.id.navigation_logout:
                     Intent logout = new Intent(userSchedule.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;
