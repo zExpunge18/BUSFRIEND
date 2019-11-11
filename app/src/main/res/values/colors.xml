@@ -17,4 +17,5 @@
     <color name="colorBodyNoOpac">#EF9540</color>
     <color name="colorWhite">#fbfdfb</color>
     <color name="colorBodyBlack">#BF292929</color>
+    <color name="colorBodyBlue">#345088</color>
 </resources>
