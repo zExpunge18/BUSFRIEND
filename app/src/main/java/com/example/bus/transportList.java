@@ -81,6 +81,7 @@ public class transportList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transport_list_fragment);
         SharedPreferences sp = getApplication().getSharedPreferences("schedule", MODE_PRIVATE);
+
         if(sp.contains("Destination_from")) {
             Destination_from = sp.getString("Destination_from", null);
             Destination_to = sp.getString("Destination_to",null);
@@ -118,7 +119,6 @@ public class transportList extends AppCompatActivity {
                 editor.commit();
                 startActivity(new Intent(getApplicationContext(),transportListDetails.class));
                 finish();
-
             }
         });
 
@@ -131,26 +131,18 @@ public class transportList extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         busTypeSpin.setAdapter(adapter);
 
-        testButton = findViewById(R.id.testButton);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_loadCon2 = new Intent(transportList.this, transportListDetails.class);
-                startActivity(intent_loadCon2);
-            }
-        });
-
         btnReturn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_loadCon2 = new Intent(transportList.this, loadConst.class);
+                Intent intent_loadCon2 = new Intent(transportList.this, index.class);
                 startActivity(intent_loadCon2);
+                finish();
             }
         });
     }
 
     public void LoadBusList(){
-        progressDialog.setMessage("Logging in please wait...");
+        progressDialog.setMessage("Loading Available Bus in please wait...");
         progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Links.Load_Buslist,

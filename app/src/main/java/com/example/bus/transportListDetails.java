@@ -46,18 +46,22 @@ public class transportListDetails extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent index = new Intent(transportListDetails.this, index.class);
                     startActivity(index);
+                    finish();
                     break;
                 case R.id.navigation_dashboard:
                     Intent schedule = new Intent(transportListDetails.this, userSchedule.class);
                     startActivity(schedule);
+                    finish();
                     break;
                 case R.id.navigation_account:
                     Intent account = new Intent(transportListDetails.this, accountConst.class);
                     startActivity(account);
+                    finish();
                     break;
                 case R.id.navigation_logout:
                     Intent logout = new Intent(transportListDetails.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;
@@ -150,7 +154,6 @@ public class transportListDetails extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean error = jsonObject.getBoolean("error");
                                 String message = jsonObject.getString("message");
-
                                 if (!error) {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(transportListDetails.this, transportPayment.class));
@@ -183,7 +186,7 @@ public class transportListDetails extends AppCompatActivity {
                 }
             };
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                    20000,
+                    10000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(this);

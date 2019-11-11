@@ -46,10 +46,6 @@ public class loadConst extends AppCompatActivity {
         }
 
         if(logStatus == 1){
-            SharedPreferences.Editor editor = sp.edit();
-            editor.clear();
-            editor.putInt("logStatus",0);
-            editor.commit();
             startActivity(new Intent(getApplicationContext(), index.class));
             finish();
         }
@@ -108,7 +104,7 @@ public class loadConst extends AppCompatActivity {
                                 if(!error){
                                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                                     getJSONObject(jsonObject.getJSONArray("user"));
-                                    startActivity(new Intent(getApplicationContext(),index.class));
+                                    startActivity(new Intent(getApplicationContext(),ads_section.class));
                                     finish();
                                 }else {
                                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
