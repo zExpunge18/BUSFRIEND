@@ -1,5 +1,6 @@
 package com.example.bus;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,16 +9,19 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class index extends AppCompatActivity {
 
     private TextView mTextMessage;
     private Button btnNext1;
-    EditText etDestinationFrom, etDestinationTo, etDate;
-    String DestinationFrom, DestintationTo, DepartureDate;
+    TextView txtUsername;
+    Spinner spinnerFrom, spinnerTo;
+    String DestinationFrom, DestintationTo, DepartureDate, fullname;
 
 
 
@@ -56,12 +60,31 @@ public class index extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
+
+        SharedPreferences sp = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        if(sp.contains("logStatus")) {
+            fullname = sp.getString("fullname",null);
+        }
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        etDestinationTo = findViewById(R.id.etDestinationTo);
-        etDestinationFrom = findViewById(R.id.etDestinationFrom);
-        etDate = findViewById(R.id.etDate);
+        spinnerFrom =  findViewById(R.id.spinFrom);
+        spinnerTo =  findViewById(R.id.spinTo);
+        txtUsername = findViewById(R.id.indexUsername);
+
+        txtUsername.setText(fullname);
+
+        String[] spinFrom = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Clark"};
+        String[] spinTo = {"Manila", "Bulacan", "Bataan", "Baguio City", "Dagupan City", "Nueva Ecija", "Clark"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinFrom);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinTo);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFrom.setAdapter(adapter);
+        spinnerTo.setAdapter(adapter);
 
         btnNext1 = findViewById(R.id.btnNext1);
         btnNext1.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +96,15 @@ public class index extends AppCompatActivity {
     }
 
     private void SearchTrip() {
-        DestinationFrom = etDestinationFrom.getText().toString().trim();
-        DestintationTo = etDestinationTo.getText().toString().trim();
+        DestinationFrom = spinnerFrom.getSelectedItem().toString();
+        DestintationTo = spinnerTo.getSelectedItem().toString();
 
         if(DestinationFrom.isEmpty()){
-            etDestinationFrom.setError("Please enter the Location of Terminal");
-            etDestinationFrom.requestFocus();
+            Toast.makeText(this,  "Please Select Terminal", Toast.LENGTH_SHORT).show();
         }
 
         if(DestintationTo.isEmpty()){
-            etDestinationTo.setError("Please enter the Drop-off location");
-            etDestinationTo.requestFocus();
+            Toast.makeText(this,  "Please Select Drop-off place", Toast.LENGTH_SHORT).show();
         }
 
         if(!DestinationFrom.isEmpty() && !DestintationTo.isEmpty()){

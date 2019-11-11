@@ -33,7 +33,7 @@ public class loadConst extends AppCompatActivity {
     TextView btnRegister;
     ProgressDialog progressDialog;
     String Email, Password, fullname, mobile, email;
-    int ewallet, logStatus;
+    int ewallet, logStatus, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +46,6 @@ public class loadConst extends AppCompatActivity {
         }
 
         if(logStatus == 1){
-            SharedPreferences.Editor editor = sp.edit();
-            editor.clear();
-            editor.putInt("logStatus",0);
-            editor.commit();
             startActivity(new Intent(getApplicationContext(), index.class));
             finish();
         }
@@ -108,7 +104,7 @@ public class loadConst extends AppCompatActivity {
                                 if(!error){
                                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                                     getJSONObject(jsonObject.getJSONArray("user"));
-                                    startActivity(new Intent(getApplicationContext(),index.class));
+                                    startActivity(new Intent(getApplicationContext(),ads_section.class));
                                     finish();
                                 }else {
                                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
@@ -151,10 +147,12 @@ public class loadConst extends AppCompatActivity {
             email = obj.getString("email");
             mobile = obj.getString("contact_no");
             ewallet = obj.getInt("ewallet");
+            id = obj.getInt("id");
 
             SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("logStatus",1);
+            editor.putInt("id", id);
             editor.putString("fullname",fullname);
             editor.putString("email",email);
             editor.putString("mobile",mobile);
