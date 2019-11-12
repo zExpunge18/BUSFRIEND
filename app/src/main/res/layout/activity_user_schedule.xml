@@ -51,6 +51,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <ListView
+        android:id="@+id/tripHistoryListView"
         android:layout_width="395dp"
         android:layout_height="656dp"
         android:layout_marginStart="8dp"
