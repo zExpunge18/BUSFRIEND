@@ -8,8 +8,103 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/list_layout_design_1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="6dp">
+
+        <TextView
+            android:id="@+id/busTypeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AC"
+            android:textColor="@color/colorTxtBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="31dp" />
+
+        <ImageView
+            android:id="@+id/busImage"
+            android:layout_width="66dp"
+            android:layout_height="69dp"
+            app:srcCompat="@drawable/busfriend"
+            tools:layout_editor_absoluteX="59dp"
+            tools:layout_editor_absoluteY="6dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="119dp" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pending/DOne"
+            android:textColor="@color/colorBody"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="303dp"
+            tools:layout_editor_absoluteY="31dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="145dp" />
+
+
+        <TextView
+            android:id="@+id/busLocationTxt"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="16dp"
+            android:text="location"
+            android:textColor="@color/colorTxtBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/busTimeTxt"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:text="4:30 pm"
+            android:textColor="@color/colorTxtBlack"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/guideline20"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toTopOf="@+id/guideline22" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="40dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+    <!--
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/list_layout_design_1">
+        android:background="@drawable/list_layout_design_1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-2dp">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline9"
@@ -148,6 +243,5 @@
             app:layout_constraintStart_toStartOf="@+id/busPriceTxt"
             app:layout_constraintTop_toBottomOf="@+id/busPriceTxt" />
     </android.support.constraint.ConstraintLayout>
-
-
+        -->
 </android.support.constraint.ConstraintLayout>

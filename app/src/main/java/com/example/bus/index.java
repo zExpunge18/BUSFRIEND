@@ -69,6 +69,7 @@ public class index extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.bringToFront();
         spinnerFrom =  findViewById(R.id.spinFrom);
         spinnerTo =  findViewById(R.id.spinTo);
         txtUsername = findViewById(R.id.indexUsername);

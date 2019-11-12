@@ -9,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class transportPayment extends AppCompatActivity {
 
     private TextView mTextMessage, txtName, txtMobile, txtPrice, txtEwallet, txtEmail;
     private ImageView btnReturn2;
+    private Button btnReceipt;
     int busPrice, ewallet;
     String fullname, email, mobile;
 
@@ -68,6 +70,7 @@ public class transportPayment extends AppCompatActivity {
         txtPrice = findViewById(R.id.txtPrice);
         txtEwallet = findViewById(R.id.txtEwallet);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.bringToFront();
 
         txtName.setText(fullname);
         txtEmail.setText(email);
@@ -81,6 +84,16 @@ public class transportPayment extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent_loadCon2 = new Intent(transportPayment.this, transportListDetails.class);
                 startActivity(intent_loadCon2);
+                finish();
+            }
+        });
+
+        btnReceipt = findViewById(R.id.btnReceipt);
+        btnReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_loadCon3 = new Intent(transportPayment.this, transportReceipt.class);
+                startActivity(intent_loadCon3);
                 finish();
             }
         });
