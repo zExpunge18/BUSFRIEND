@@ -1,6 +1,7 @@
 package com.example.bus;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -35,6 +36,11 @@ public class userSchedule extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(userSchedule.this, loadConst.class);
                     startActivity(logout);
                     finish();

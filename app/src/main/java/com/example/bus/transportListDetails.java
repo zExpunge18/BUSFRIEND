@@ -59,6 +59,11 @@ public class transportListDetails extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(transportListDetails.this, loadConst.class);
                     startActivity(logout);
                     finish();

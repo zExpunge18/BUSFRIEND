@@ -9,8 +9,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +50,11 @@ public class index extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(index.this, loadConst.class);
                     startActivity(logout);
                     finish();
@@ -94,6 +102,18 @@ public class index extends AppCompatActivity {
                 SearchTrip();
             }
         });
+
+        ImageView adsImage = findViewById(R.id.adsImage);
+        adsImage.setVisibility(View.INVISIBLE);
+
+
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.animate);
+
+        if (adsImage.getVisibility() == View.INVISIBLE) {
+            adsImage.setVisibility(View.VISIBLE);
+            adsImage.startAnimation(slideUp);
+        }
+
     }
 
     private void SearchTrip() {

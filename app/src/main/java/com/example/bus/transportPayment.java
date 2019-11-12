@@ -41,8 +41,14 @@ public class transportPayment extends AppCompatActivity {
                     startActivity(account);
                     break;
                 case R.id.navigation_logout:
+                    SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.putInt("logStatus",0);
+                    editor.commit();
                     Intent logout = new Intent(transportPayment.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;
