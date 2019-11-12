@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,8 @@ public class transportListDetails extends AppCompatActivity {
     private TextView mTextMessage, txtBusname, txtOperator, txtPlateNo, txtBusType, txtDestination, txtDate, txtTime, txtPrice;
     private Button btnPayment;
     ProgressDialog progressDialog;
-    int busPrice,tripID,userID, ewallet, payment, busSeat;
+    int busPrice,tripID,userID, ewallet, payment, busSeat, quantity;
+    EditText etQuantity;
     String name, operator, plateNo, busType, destination, date, driver_responsible, time;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -101,6 +103,7 @@ public class transportListDetails extends AppCompatActivity {
         txtTime = findViewById(R.id.busTransTimeTxt);
         txtPrice = findViewById(R.id.txtPrice);
         progressDialog = new ProgressDialog(this);
+        etQuantity = findViewById(R.id.busQuanTxt);
 
 
         btnCancelBtn = findViewById(R.id.busCancelBtn);
@@ -136,61 +139,71 @@ public class transportListDetails extends AppCompatActivity {
     }
 
     public void PayTicket() {
-        Toast.makeText(this, tripID + " " + userID +" " + busSeat + " " + ewallet + " " + busPrice, Toast.LENGTH_LONG).show();
-        if (ewallet < busPrice) {
-            Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG);
-        } else {
-            payment = ewallet - busPrice;
+        quantity = Integer.parseInt(etQuantity.getText().toString().trim());
+        if (etQuantity.getText().toString().trim() != null) {
 
-            progressDialog.setMessage("Booking your Ticket please wait...");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Links.Book_Ticket,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            progressDialog.dismiss();
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-                                boolean error = jsonObject.getBoolean("error");
-                                String message = jsonObject.getString("message");
-                                if (!error) {
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(transportListDetails.this, transportPayment.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+            if (ewallet < busPrice) {
+                Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG);
+            } else {
+                busPrice = busPrice * quantity;
+                payment = ewallet - busPrice;
+                Toast.makeText(this, tripID + " " + userID + " " + busSeat + " " + ewallet + " " + busPrice + " " + quantity, Toast.LENGTH_LONG).show();
+
+                progressDialog.setMessage("Booking your Ticket please wait...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, Links.Book_Ticket,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                progressDialog.dismiss();
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    boolean error = jsonObject.getBoolean("error");
+                                    String message = jsonObject.getString("message");
+                                    if (!error) {
+                                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(transportListDetails.this, transportPayment.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                } catch (JSONException e) {
+                                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-
-
-                            } catch (JSONException e) {
-                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    HashMap<String, String> params = new HashMap<>();
-                    params.put("tripID", String.valueOf(tripID));
-                    params.put("userID", String.valueOf(userID));
-                    params.put("payment", String.valueOf(busPrice));
-                    params.put("ewallet",String.valueOf(payment));
-                    params.put("busSeat",String.valueOf(busSeat));
-                    return params;
-                }
-            };
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                    10000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        HashMap<String, String> params = new HashMap<>();
+                        params.put("tripID", String.valueOf(tripID));
+                        params.put("userID", String.valueOf(userID));
+                        params.put("payment", String.valueOf(busPrice));
+                        params.put("ewallet", String.valueOf(payment));
+                        params.put("busSeat", String.valueOf(busSeat));
+                        params.put("ticketNumber", String.valueOf(quantity));
+                        return params;
+                    }
+                };
+                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
+            }
+        }else{
+            etQuantity.setError("Please Enter the number of tickets to be reserved");
+            etQuantity.requestFocus();
         }
     }
 }

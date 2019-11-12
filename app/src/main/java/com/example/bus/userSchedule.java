@@ -6,11 +6,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class userSchedule extends AppCompatActivity {
 
     private TextView mTextMessage;
+    ListView tripHistoryListView;
+    List<busList> scheduleList;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -52,5 +57,6 @@ public class userSchedule extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        tripHistoryListView = findViewById(R.id.tripHistoryListView);
     }
 }
