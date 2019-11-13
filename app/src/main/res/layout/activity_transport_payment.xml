@@ -236,8 +236,8 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="207dp"
+        android:layout_width="369dp"
+        android:layout_height="213dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
@@ -317,8 +317,8 @@
 
         <TextView
             android:id="@+id/txtEwallet"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_width="191dp"
+            android:layout_height="42dp"
             android:layout_marginStart="160dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="20dp"

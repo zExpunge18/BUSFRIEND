@@ -144,15 +144,17 @@ public class transportListDetails extends AppCompatActivity {
     }
 
     public void PayTicket() {
-        quantity = Integer.parseInt(etQuantity.getText().toString().trim());
-        if (etQuantity.getText().toString().trim() != null) {
-
+        String etQty = etQuantity.getText().toString().trim();
+        if (!etQty.isEmpty()) {
+            quantity = Integer.parseInt(etQty);
+            busPrice = ((busPrice * quantity) + 50);
+            payment = ewallet - busPrice;
+            busSeat = busSeat - quantity;
+            ewallet = ewallet - busPrice;
 
             if (ewallet < busPrice) {
                 Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG);
             } else {
-                busPrice = busPrice * quantity;
-                payment = ewallet - busPrice;
                 Toast.makeText(this, tripID + " " + userID + " " + busSeat + " " + ewallet + " " + busPrice + " " + quantity, Toast.LENGTH_LONG).show();
 
                 progressDialog.setMessage("Booking your Ticket please wait...");
@@ -169,6 +171,15 @@ public class transportListDetails extends AppCompatActivity {
                                     String message = jsonObject.getString("message");
                                     if (!error) {
                                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences sp = getApplication().getSharedPreferences("reciept", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sp.edit();
+                                        editor.clear();
+                                        editor.putInt("payment", busPrice);
+                                        editor.putInt("currentAmount", payment);
+                                        editor.putInt("quantity", quantity);
+                                        editor.commit();
+
                                         startActivity(new Intent(transportListDetails.this, transportPayment.class));
                                         finish();
                                     } else {
@@ -195,7 +206,7 @@ public class transportListDetails extends AppCompatActivity {
                         params.put("payment", String.valueOf(busPrice));
                         params.put("ewallet", String.valueOf(payment));
                         params.put("busSeat", String.valueOf(busSeat));
-                        params.put("ticketNumber", String.valueOf(quantity));
+                        params.put("quantity",String.valueOf(quantity));
                         return params;
                     }
                 };

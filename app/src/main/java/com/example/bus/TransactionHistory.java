@@ -1,14 +1,21 @@
 package com.example.bus;
 
 public class TransactionHistory {
-    int id, busPrice, amount, payment, numberOfTicket;
 
-    public TransactionHistory(int id, int busPrice, int amount, int payment, int numberOfTicket) {
+    int id, payment, booked_seat, price;
+    String fullname, destinationFrom, destinationTo, date, bus_name, email;
+
+    public TransactionHistory(int id, int payment, int booked_seat, int price, String fullname, String destinationFrom, String destinationTo, String date, String bus_name, String email) {
         this.id = id;
-        this.busPrice = busPrice;
-        this.amount = amount;
         this.payment = payment;
-        this.numberOfTicket = numberOfTicket;
+        this.booked_seat = booked_seat;
+        this.price = price;
+        this.fullname = fullname;
+        this.destinationFrom = destinationFrom;
+        this.destinationTo = destinationTo;
+        this.date = date;
+        this.bus_name = bus_name;
+        this.email = email;
     }
 
     public int getId() {
@@ -19,22 +26,6 @@ public class TransactionHistory {
         this.id = id;
     }
 
-    public int getBusPrice() {
-        return busPrice;
-    }
-
-    public void setBusPrice(int busPrice) {
-        this.busPrice = busPrice;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public int getPayment() {
         return payment;
     }
@@ -43,13 +34,70 @@ public class TransactionHistory {
         this.payment = payment;
     }
 
-    public int getNumberOfTicket() {
-        return numberOfTicket;
+    public int getBooked_seat() {
+        return booked_seat;
     }
 
-    public void setNumberOfTicket(int numberOfTicket) {
-        this.numberOfTicket = numberOfTicket;
+    public void setBooked_seat(int booked_seat) {
+        this.booked_seat = booked_seat;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getDestinationFrom() {
+        return destinationFrom;
+    }
+
+    public void setDestinationFrom(String destinationFrom) {
+        this.destinationFrom = destinationFrom;
+    }
+
+    public String getDestinationTo() {
+        return destinationTo;
+    }
+
+    public void setDestinationTo(String destinationTo) {
+        this.destinationTo = destinationTo;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getBus_name() {
+        return bus_name;
+    }
+
+    public void setBus_name(String bus_name) {
+        this.bus_name = bus_name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
 
 

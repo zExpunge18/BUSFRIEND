@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorBody"
     android:layout_height="match_parent"
+    android:background="@color/colorBody"
     tools:context=".userSchedule">
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
@@ -18,17 +18,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:menu="@menu/bottom_nav_menu" />
 
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="605dp"
         android:background="@color/colorMain"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-1dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/positionTxt"
@@ -38,7 +41,7 @@
             android:layout_marginLeft="35dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="My Schedule"
+            android:text="Transaction History"
             android:textColor="@color/colorIcText"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -54,14 +57,11 @@
         android:id="@+id/tripHistoryListView"
         android:layout_width="395dp"
         android:layout_height="656dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="137dp" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
-</android.support.constraint.ConstraintLayout >
+</android.support.constraint.ConstraintLayout>

@@ -44,7 +44,7 @@ public class transportList extends AppCompatActivity {
     private ImageView btnReturn1;
     private Button testButton;
     ProgressDialog progressDialog;
-    String Destination_from, Destination_to, Date;
+    String Destination_from, Destination_to, DateScheduled;
 
     List<busList> scheduleList;
     ListView listView;
@@ -58,18 +58,22 @@ public class transportList extends AppCompatActivity {
                 case R.id.navigation_home:
                     Intent index = new Intent(transportList.this, index.class);
                     startActivity(index);
+                    finish();
                     break;
                 case R.id.navigation_dashboard:
                     Intent schedule = new Intent(transportList.this, userSchedule.class);
                     startActivity(schedule);
+                    finish();
                     break;
                 case R.id.navigation_account:
                     Intent account = new Intent(transportList.this, accountConst.class);
                     startActivity(account);
+                    finish();
                     break;
                 case R.id.navigation_logout:
                     Intent logout = new Intent(transportList.this, loadConst.class);
                     startActivity(logout);
+                    finish();
                     break;
             }
             return false;
@@ -85,6 +89,7 @@ public class transportList extends AppCompatActivity {
         if(sp.contains("Destination_from")) {
             Destination_from = sp.getString("Destination_from", null);
             Destination_to = sp.getString("Destination_to",null);
+            DateScheduled = sp.getString("dateScheduled", null);
         }
 
         progressDialog = new ProgressDialog(this);
@@ -180,6 +185,7 @@ public class transportList extends AppCompatActivity {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Destination_from", Destination_from);
                 params.put("Destination_to", Destination_to);
+                params.put("dateScheduled", DateScheduled);
                 return params;
             }
         };
