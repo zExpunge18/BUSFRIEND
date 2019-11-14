@@ -103,7 +103,16 @@ public class userSchedule extends AppCompatActivity {
                 SharedPreferences sp = getApplication().getSharedPreferences("trip_details", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.clear();
-
+                editor.putInt("id",trip.getId());
+                editor.putInt("payment",trip.getPayment());
+                editor.putInt("booked_seat", trip.getBooked_seat());
+                editor.putInt("price", trip.getPrice());
+                editor.putString("fullname", trip.getFullname());
+                editor.putString("destinationFrom", trip.getDestinationFrom());
+                editor.putString("detinationTo",trip.getDestinationTo());
+                editor.putString("date",trip.getDate());
+                editor.putString("bus_name",trip.getBus_name());
+                editor.putString("email",trip.getEmail());
                 editor.commit();
                 startActivity(new Intent(getApplicationContext(),transportReceipt.class));
                 finish();
