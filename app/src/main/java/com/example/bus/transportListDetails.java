@@ -152,6 +152,8 @@ public class transportListDetails extends AppCompatActivity {
             busSeat = busSeat - quantity;
             ewallet = ewallet - busPrice;
 
+            Toast.makeText(this, "ewallet : " + ewallet + " remaining bus seat: " + busSeat + " quantity: " + quantity, Toast.LENGTH_SHORT).show();
+
             if (ewallet < busPrice) {
                 Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG);
             } else {
