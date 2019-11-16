@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextNoOpacity"
+    android:background="@color/colorBodyNoOpac"
     tools:context=".index">
 
     <android.support.design.widget.BottomNavigationView
@@ -37,7 +37,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/colorAccent">
+                android:background="@drawable/layout_bg_gradient_blue">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -69,7 +69,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shadow_layout"
+                android:background="@drawable/layout_bg_gradient"
                 android:layout_marginTop="10dp">
 
                 <TextView

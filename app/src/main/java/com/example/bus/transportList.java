@@ -42,7 +42,6 @@ public class transportList extends AppCompatActivity {
     private TextView busPriceTxt;
     private TextView mTextMessage;
     private ImageView btnReturn1;
-    private Button testButton;
     ProgressDialog progressDialog;
     String Destination_from, Destination_to, DateScheduled;
 
@@ -68,6 +67,11 @@ public class transportList extends AppCompatActivity {
                 case R.id.navigation_account:
                     Intent account = new Intent(transportList.this, accountConst.class);
                     startActivity(account);
+                    finish();
+                    break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(transportList.this, payment_tab.class);
+                    startActivity(payment);
                     finish();
                     break;
                 case R.id.navigation_logout:
@@ -239,20 +243,22 @@ public class transportList extends AppCompatActivity {
             //getting each object
             JSONObject obj = schedule.getJSONObject(i);
 
-            scheduleList.add(new busList(
-                    obj.getInt("id"),
-                    obj.getInt("busSeat"),
-                    obj.getInt("price"),
-                    obj.getString("bus_type"),
-                    obj.getString("bus_name"),
-                    obj.getString("destination_from"),
-                    obj.getString("destination_to"),
-                    obj.getString("time"),
-                    obj.getString("driver_responsible"),
-                    obj.getString("plate_no"),
-                    obj.getString("operator"),
-                    obj.getString("date")
-            ));
+            if(obj.getInt("busSeat")!=0) {
+                scheduleList.add(new busList(
+                        obj.getInt("id"),
+                        obj.getInt("busSeat"),
+                        obj.getInt("price"),
+                        obj.getString("bus_type"),
+                        obj.getString("bus_name"),
+                        obj.getString("destination_from"),
+                        obj.getString("destination_to"),
+                        obj.getString("time"),
+                        obj.getString("driver_responsible"),
+                        obj.getString("plate_no"),
+                        obj.getString("operator"),
+                        obj.getString("date")
+                ));
+            }
         }
 
         ScheduleAdapter adapter = new ScheduleAdapter(scheduleList);

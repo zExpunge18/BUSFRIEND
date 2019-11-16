@@ -43,6 +43,11 @@ public class transportPayment extends AppCompatActivity {
                     startActivity(account);
                     finish();
                     break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(transportPayment.this, payment_tab.class);
+                    startActivity(payment);
+                    finish();
+                    break;
                 case R.id.navigation_logout:
                     SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
@@ -104,7 +109,7 @@ public class transportPayment extends AppCompatActivity {
         btnReceipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_loadCon3 = new Intent(transportPayment.this, transportReceipt.class);
+                Intent intent_loadCon3 = new Intent(transportPayment.this, index.class);
                 startActivity(intent_loadCon3);
                 finish();
             }

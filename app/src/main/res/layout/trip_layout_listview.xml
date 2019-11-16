@@ -9,7 +9,9 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/list_layout_design_1">
+        android:background="@drawable/list_layout_design_1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline9"
@@ -30,31 +32,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_begin="16dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="20dp" />
+            app:layout_constraintGuide_end="16dp" />
 
         <ImageView
             android:id="@+id/busImage"
             android:layout_width="66dp"
             android:layout_height="69dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
             app:layout_constraintTop_toTopOf="@+id/guideline10"
-            app:srcCompat="@drawable/busfriend"
-            tools:layout_editor_absoluteX="38dp" />
+            app:srcCompat="@drawable/busfriend" />
 
         <TextView
             android:id="@+id/txtDestination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="200dp"
             android:layout_marginRight="200dp"
             android:text="Destination From"
@@ -62,7 +66,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/busTimeTxt"
-            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintHorizontal_bias="0.253"
             app:layout_constraintStart_toStartOf="@+id/guideline9"
             app:layout_constraintTop_toBottomOf="@+id/busImage" />
 
@@ -70,8 +74,8 @@
             android:id="@+id/txtDestinationTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="200dp"
             android:layout_marginRight="200dp"
@@ -88,8 +92,8 @@
             android:id="@+id/txtDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="200dp"
             android:layout_marginRight="200dp"
@@ -106,7 +110,7 @@
             android:id="@+id/busPriceTxt"
             android:layout_width="208dp"
             android:layout_height="55dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:text="Busname"
@@ -114,7 +118,7 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.545"
             app:layout_constraintStart_toEndOf="@+id/busImage"
             app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
@@ -122,7 +126,7 @@
             android:id="@+id/busTimeTxt"
             android:layout_width="114dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Payment"
@@ -130,7 +134,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/busPriceTxt"
-            app:layout_constraintHorizontal_bias="0.675"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/busPriceTxt"
             app:layout_constraintTop_toBottomOf="@+id/busPriceTxt" />
     </android.support.constraint.ConstraintLayout>

@@ -64,6 +64,11 @@ public class userSchedule extends AppCompatActivity {
                     startActivity(account);
                     finish();
                     break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(userSchedule.this, payment_tab.class);
+                    startActivity(payment);
+                    finish();
+                    break;
                 case R.id.navigation_logout:
                     SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
@@ -109,7 +114,7 @@ public class userSchedule extends AppCompatActivity {
                 editor.putInt("price", trip.getPrice());
                 editor.putString("fullname", trip.getFullname());
                 editor.putString("destinationFrom", trip.getDestinationFrom());
-                editor.putString("detinationTo",trip.getDestinationTo());
+                editor.putString("destinationTo",trip.getDestinationTo());
                 editor.putString("date",trip.getDate());
                 editor.putString("bus_name",trip.getBus_name());
                 editor.putString("email",trip.getEmail());
