@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ads_section"></activity>
+        <activity android:name=".payment_tab"></activity>
+        <activity android:name=".ads_section" />
         <activity android:name=".transportReceipt" />
         <activity android:name=".transportPayment" />
         <activity android:name=".userSchedule" />
