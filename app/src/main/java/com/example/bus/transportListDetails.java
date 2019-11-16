@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +36,7 @@ public class transportListDetails extends AppCompatActivity {
     private TextView mTextMessage, txtBusname, txtOperator, txtPlateNo, txtBusType, txtDestination, txtDate, txtTime, txtPrice;
     private Button btnPayment;
     ProgressDialog progressDialog;
-    int busPrice,tripID,userID, ewallet, payment, busSeat, quantity;
+    int busPrice,tripID,userID, ewallet, payment, busSeat, quantity, fBusPrice;
     EditText etQuantity;
     String name, operator, plateNo, busType, destination, date, driver_responsible, time;
 
@@ -87,6 +88,7 @@ public class transportListDetails extends AppCompatActivity {
             operator = sp.getString("operator", null);
             plateNo = sp.getString("plate_no", null);
             busPrice = sp.getInt("price",0);
+            fBusPrice= sp.getInt("price",0);
             destination = sp.getString("destination_To",null);
             date = sp.getString("date",null);
             busType = sp.getString("busType",null);
@@ -145,19 +147,25 @@ public class transportListDetails extends AppCompatActivity {
 
     public void PayTicket() {
         String etQty = etQuantity.getText().toString().trim();
-        if (!etQty.isEmpty()) {
+
+        if (etQty.isEmpty()) {
+            etQuantity.setError("Please Enter the number of tickets to be reserved");
+            etQuantity.requestFocus();
+        } else {
+
             quantity = Integer.parseInt(etQty);
-            busPrice = ((busPrice * quantity) + 50);
-            payment = ewallet - busPrice;
-            busSeat = busSeat - quantity;
-            ewallet = ewallet - busPrice;
+            fBusPrice = ((fBusPrice* quantity) + 50);
+            Toast.makeText(this, String.valueOf(fBusPrice), Toast.LENGTH_LONG).show();
 
-            Toast.makeText(this, "ewallet : " + ewallet + " remaining bus seat: " + busSeat + " quantity: " + quantity, Toast.LENGTH_SHORT).show();
+            if(busSeat < quantity){
+                etQuantity.setError("You have Exceeded the number of Passengers Please look for another trip!");
+                etQuantity.requestFocus();
+            }
 
-            if (ewallet < busPrice) {
-                Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG);
-            } else {
-                Toast.makeText(this, tripID + " " + userID + " " + busSeat + " " + ewallet + " " + busPrice + " " + quantity, Toast.LENGTH_LONG).show();
+            if (!etQty.isEmpty() && ewallet >= fBusPrice && busSeat >=quantity ) {
+
+                payment = ewallet - fBusPrice;
+                busSeat = busSeat - quantity;
 
                 progressDialog.setMessage("Booking your Ticket please wait...");
                 progressDialog.setCancelable(false);
@@ -173,11 +181,11 @@ public class transportListDetails extends AppCompatActivity {
                                     String message = jsonObject.getString("message");
                                     if (!error) {
                                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
+                                        getJSONObject(jsonObject.getJSONArray("user"));
                                         SharedPreferences sp = getApplication().getSharedPreferences("reciept", MODE_PRIVATE);
                                         SharedPreferences.Editor editor = sp.edit();
                                         editor.clear();
-                                        editor.putInt("payment", busPrice);
+                                        editor.putInt("payment", fBusPrice);
                                         editor.putInt("currentAmount", payment);
                                         editor.putInt("quantity", quantity);
                                         editor.commit();
@@ -208,7 +216,7 @@ public class transportListDetails extends AppCompatActivity {
                         params.put("payment", String.valueOf(busPrice));
                         params.put("ewallet", String.valueOf(payment));
                         params.put("busSeat", String.valueOf(busSeat));
-                        params.put("quantity",String.valueOf(quantity));
+                        params.put("quantity", String.valueOf(quantity));
                         return params;
                     }
                 };
@@ -219,9 +227,24 @@ public class transportListDetails extends AppCompatActivity {
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
                 requestQueue.add(stringRequest);
             }
-        }else{
-            etQuantity.setError("Please Enter the number of tickets to be reserved");
-            etQuantity.requestFocus();
+            if (ewallet < fBusPrice) {
+                Toast.makeText(this, "Insufficient Balance please Loadup at the nearest Terminal", Toast.LENGTH_LONG).show();
+                fBusPrice = busPrice;
+            }
+        }
+    }
+
+    private void getJSONObject(JSONArray user)  throws JSONException {
+        for (int i = 0; i < user.length(); i++) {
+            JSONObject obj = user.getJSONObject(i);
+
+            ewallet = obj.getInt("ewallet");
+
+            SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("ewallet",payment);
+            editor.commit();
+
         }
     }
 }

@@ -99,15 +99,13 @@ public class loadConst extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean error = jsonObject.getBoolean("error");
-                                String message = jsonObject.getString("message");
+                                //String message = jsonObject.getString("message");
 
                                 if(!error){
-                                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                                     getJSONObject(jsonObject.getJSONArray("user"));
                                     startActivity(new Intent(getApplicationContext(),ads_section.class));
                                     finish();
-                                }else {
-                                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                                 }
 
 
