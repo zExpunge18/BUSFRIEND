@@ -109,7 +109,7 @@ public class userSchedule extends AppCompatActivity {
                 editor.putInt("price", trip.getPrice());
                 editor.putString("fullname", trip.getFullname());
                 editor.putString("destinationFrom", trip.getDestinationFrom());
-                editor.putString("detinationTo",trip.getDestinationTo());
+                editor.putString("destinationTo",trip.getDestinationTo());
                 editor.putString("date",trip.getDate());
                 editor.putString("bus_name",trip.getBus_name());
                 editor.putString("email",trip.getEmail());

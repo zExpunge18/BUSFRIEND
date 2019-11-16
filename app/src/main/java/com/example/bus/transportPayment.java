@@ -104,7 +104,7 @@ public class transportPayment extends AppCompatActivity {
         btnReceipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_loadCon3 = new Intent(transportPayment.this, transportReceipt.class);
+                Intent intent_loadCon3 = new Intent(transportPayment.this, index.class);
                 startActivity(intent_loadCon3);
                 finish();
             }
