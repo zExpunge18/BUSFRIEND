@@ -18,4 +18,5 @@
     <color name="colorWhite">#fbfdfb</color>
     <color name="colorBodyBlack">#BF292929</color>
     <color name="colorBodyBlue">#345088</color>
+    <color name="forebg">#f8edd9</color>
 </resources>

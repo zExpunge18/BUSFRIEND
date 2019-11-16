@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorIcText"
+    android:background="@color/forebg"
     tools:context=".transportListDetails">
 
 
@@ -53,8 +53,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="313dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shadow_layout_white">
+                android:layout_marginTop="10dp">
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline15"
@@ -298,13 +297,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="20sp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="35dp"
                     android:focusable="false"
                     android:text="Destination: "
                     android:textColor="@color/colorTxtBlack"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -345,7 +344,7 @@
                     android:focusable="false"
                     android:text="Transport Date:"
                     android:textColor="@color/colorTxtBlack"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -384,7 +383,7 @@
                     android:focusable="false"
                     android:text="Transport Time:"
                     android:textColor="@color/colorTxtBlack"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -423,7 +422,7 @@
                     android:focusable="false"
                     android:text="Transport Fee:"
                     android:textColor="@color/colorTxtBlack"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

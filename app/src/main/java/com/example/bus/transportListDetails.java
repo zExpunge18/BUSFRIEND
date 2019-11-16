@@ -61,6 +61,11 @@ public class transportListDetails extends AppCompatActivity {
                     startActivity(account);
                     finish();
                     break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(transportListDetails.this, payment_tab.class);
+                    startActivity(payment);
+                    finish();
+                    break;
                 case R.id.navigation_logout:
                     SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();

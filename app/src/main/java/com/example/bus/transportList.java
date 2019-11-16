@@ -69,6 +69,11 @@ public class transportList extends AppCompatActivity {
                     startActivity(account);
                     finish();
                     break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(transportList.this, payment_tab.class);
+                    startActivity(payment);
+                    finish();
+                    break;
                 case R.id.navigation_logout:
                     Intent logout = new Intent(transportList.this, loadConst.class);
                     startActivity(logout);

@@ -57,6 +57,11 @@ public class index extends AppCompatActivity {
                     startActivity(account);
                     finish();
                     break;
+                case R.id.navigation_payment:
+                    Intent payment = new Intent(index.this, payment_tab.class);
+                    startActivity(payment);
+                    finish();
+                    break;
                 case R.id.navigation_logout:
                     SharedPreferences sp = getApplication().getSharedPreferences("user", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sp.edit();
